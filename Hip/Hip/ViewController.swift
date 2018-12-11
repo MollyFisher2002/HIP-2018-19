@@ -8,14 +8,16 @@
 
 import UIKit
 import GoogleMaps
-class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate{
+class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate{
+    //var destinationText = UITextField()
+    @IBOutlet weak var destinationText: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
-var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.isMyLocationEnabled=true
         mapView.delegate=self
-        
+        destinationText.delegate = self
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,7 +34,11 @@ var locationManager = CLLocationManager()
         self.locationManager.stopUpdatingLocation()
         
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("User Destination \(String(describing: textField.text))")
+        return true
     
+    }
 //    override func loadView() {
 //        // Create a GMSCameraPosition that tells the map to display the
 //        // coordinate -33.86,151.20 at zoom level 6.
