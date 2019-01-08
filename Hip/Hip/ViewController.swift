@@ -10,8 +10,8 @@ import UIKit
 import GoogleMaps
 class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate{
     //var destinationText = UITextField()
-    @IBOutlet weak var destinationText: UITextField!
-    @IBOutlet weak var mapView: GMSMapView!
+   @IBOutlet weak var destinationText: UITextField!
+   @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,13 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("User Destination \(String(describing: textField.text))")
+        destinationText.resignFirstResponder()
         return true
     
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        print("User Destination")
     }
 //    override func loadView() {
 //        // Create a GMSCameraPosition that tells the map to display the
@@ -57,4 +62,3 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
 //
 
 }
-
