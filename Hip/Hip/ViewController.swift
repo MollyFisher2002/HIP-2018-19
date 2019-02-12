@@ -14,6 +14,8 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
    @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
+        print("inside view did load")
+        GMSServices.provideAPIKey("AIzaSyB0yIX2WN0HxeXsTi-vtwuCNthCNEVLb6s")
         super.viewDidLoad()
         mapView.isMyLocationEnabled=true
         mapView.delegate=self
@@ -41,9 +43,21 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-    
-        print("User Destination")
+        print("User Destination \(String(describing: textField.text))")
+        destinationText.resignFirstResponder()
+        var address_escaped =  textField.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?" + "address=" + address_escaped! + "&key=AIzaSyB0yIX2WN0HxeXsTi-vtwuCNthCNEVLb6s"
+        let geocodeurl = NSURL(string: url )
+        let urlresult = NSData(contentsOf: geocodeurl! as URL)
+        do{
+        var jsonResult = try JSONSerialization.jsonObject(with: urlresult! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+              print(jsonResult as Any)
+        }
+        catch {}
+       
     }
+    
+    
 //    override func loadView() {
 //        // Create a GMSCameraPosition that tells the map to display the
 //        // coordinate -33.86,151.20 at zoom level 6.
