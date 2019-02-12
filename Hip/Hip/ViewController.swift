@@ -52,9 +52,17 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         do{
         var jsonResult = try JSONSerialization.jsonObject(with: urlresult! as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
               print(jsonResult as Any)
+            let status = jsonResult["status"] as! String
+            if status == "OK" {
+                let allResults = jsonResult["results"] as! Array<Dictionary<NSObject, AnyObject>>
+                //var lookupAddressResults: Dictionary<NSObject, AnyObject>!
+                var lookupAddressResults = allResults[0] as!Dictionary<NSObject, AnyObject>
+                let geometry = lookupAddressResults["geometry"]! as! Dictionary<NSObject, AnyObject>
+                self.fetchedAddressLongitude = ((geometry["location"] as Dictionary<NSObject, AnyObject>)["lng"] as NSNumber).doubleValue
+                self.fetchedAddressLatitude = ((geometry["location"] as Dictionary<NSObject, AnyObject>)["lat"] as NSNumber).doubleValue
+            }
         }
         catch {}
-       
     }
     
     
