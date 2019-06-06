@@ -15,7 +15,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         print("inside view did load")
-        GMSServices.provideAPIKey("AIzaSyB0yIX2WN0HxeXsTi-vtwuCNthCNEVLb6s")
+        GMSServices.provideAPIKey("AIzaSyA4jO-8lIkbC9PN3kCbIkMph4qP0EGlcGA")
         super.viewDidLoad()
         mapView.isMyLocationEnabled=true
         mapView.delegate=self
@@ -46,7 +46,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         print("User Destination \(String(describing: textField.text))")
         destinationText.resignFirstResponder()
         var address_escaped =  textField.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?" + "address=" + address_escaped! + "&key=AIzaSyB0yIX2WN0HxeXsTi-vtwuCNthCNEVLb6s"
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?" + "address=" + address_escaped! + "&key=AIzaSyA4jO-8lIkbC9PN3kCbIkMph4qP0EGlcGA"
         let geocodeurl = NSURL(string: url )
         let urlresult = NSData(contentsOf: geocodeurl! as URL)
         do{
