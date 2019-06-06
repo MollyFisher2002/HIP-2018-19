@@ -71,7 +71,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         }
         catch {}
         //get directions
-         url = "https://maps.googleapis.com/maps/api/directions/json?"+ "origin=" + self.currentLatitude + "," + self.currentLongitude +  "&key=AIzaSyBInUoQmIaXF9tyQ_vAWY4uchKJaBcLWf8"
+        url = "https://maps.googleapis.com/maps/api/directions/json?" + "origin=" + self.currentLatitude + "," + self.currentLongitude +  "&key=AIzaSyBInUoQmIaXF9tyQ_vAWY4uchKJaBcLWf8"
         
     }
     
